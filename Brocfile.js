@@ -12,8 +12,12 @@ const srcScripts = funnel(srcDir, {
   include: ['**/*.js'],
   exclude: ['**/*.css']
 });
-const scrStyles = funnel(srcDir, { include: ['**/*.css'] });
-const demo = funnel('.', { files: ['index.html'] });
+const scrStyles = funnel(srcDir, {
+  include: ['**/*.css']
+});
+const demo = funnel('.', {
+  files: ['index.html']
+});
 
 const styleScripts = new BroccoliStyleImporter(scrStyles);
 const scripts = mergeTrees([styleScripts].concat(srcScripts));
