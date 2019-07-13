@@ -11,6 +11,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "repository": {
+    "url": "https://github.com/kcmr/poc-broccolit.git"
+  },
   "dependencies": {
     "lit-element": "^2.2.0",
     "regenerator-runtime": "^0.13.2"
