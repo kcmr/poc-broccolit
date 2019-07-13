@@ -1,5 +1,7 @@
 :host {
   display: block;
+  font-family: sans-serif;
+  background-color: orange;
 }
 
 :host([hidden]) {
