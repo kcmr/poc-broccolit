@@ -1,11 +1,9 @@
-'use strict';
-
-const funnel = require('broccoli-funnel');
-const mergeTrees = require('broccoli-merge-trees');
-const BroccoliStyleImporter = require('./lib/broccoli-styles');
-const Rollup = require('broccoli-rollup');
-const rollupConfig = require('./lib/rollup-config');
-const BrowserSync = require('broccoli-bs');
+import funnel from 'broccoli-funnel';
+import mergeTrees from 'broccoli-merge-trees';
+import BroccoliStyleImporter from './lib/broccoli-styles';
+import Rollup from 'broccoli-rollup';
+import rollupConfig from './lib/rollup-config';
+import BrowserSync from 'broccoli-bs';
 
 const srcDir = 'src';
 const srcScripts = funnel(srcDir, {
@@ -38,4 +36,4 @@ const devServer = new BrowserSync(devBundle, {
 });
 
 // module.exports = devBundle;
-module.exports = mergeTrees([devBundle, devServer]);
+export default mergeTrees([devBundle, devServer]);
