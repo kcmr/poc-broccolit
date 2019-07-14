@@ -29,8 +29,6 @@
     "broccoli-persistent-filter": "^2.3.1",
     "broccoli-plugin": "^2.1.0",
     "broccoli-rollup": "^4.1.1",
-    "browser-sync": "^2.26.7",
-    "bs-snippet-injector": "^2.0.1",
     "deep-extend": "^0.6.0",
     "live-server": "^1.2.1",
     "rollup-plugin-babel": "^4.3.3",

@@ -22,12 +22,7 @@ const styleScripts = new BroccoliStyleImporter(prefixedStyles);
 const componentTree = mergeTrees([styleScripts, scripts]);
 const bundle = new Rollup(componentTree, rollupConfig(main));
 const devBuild = mergeTrees([demo, bundle]);
-
-const server = new Server(devBuild, {
-  open: false,
-  notify: false,
-  ui: false
-});
+const server = new Server(devBuild);
 
 export default ({ env }) => {
   if (Boolean(env.match('build'))) {
