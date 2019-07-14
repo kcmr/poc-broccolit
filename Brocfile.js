@@ -3,30 +3,36 @@ import mergeTrees from 'broccoli-merge-trees';
 import BroccoliStyleImporter from './lib/broccoli-styles';
 import Rollup from 'broccoli-rollup';
 import rollupConfig from './lib/rollup-config';
-import BrowserSync from 'broccoli-bs';
+import Server from './lib/broccoli-server';
+import Autoprefixer from 'broccoli-autoprefixer';
 import { main } from './package';
 
-const styleScripts = new BroccoliStyleImporter('src');
-const scriptsFunnel = funnel(styleScripts, {
+const styles = funnel('src', {
+  include: ['**/*.css']
+});
+const scripts = funnel('src', {
   exclude: ['**/*.css']
 });
-const bundle = new Rollup(scriptsFunnel, rollupConfig(main));
 const demo = funnel('.', {
   files: ['index.html']
 });
+
+const prefixedStyles = new Autoprefixer(styles);
+const styleScripts = new BroccoliStyleImporter(prefixedStyles);
+const componentTree = mergeTrees([styleScripts, scripts]);
+const bundle = new Rollup(componentTree, rollupConfig(main));
 const devBuild = mergeTrees([demo, bundle]);
-const server = () =>
-  new BrowserSync(devBuild, {
-    bs: {
-      open: false,
-      notify: false
-    }
-  });
+
+const server = new Server(devBuild, {
+  open: false,
+  notify: false,
+  ui: false
+});
 
 export default ({ env }) => {
   if (Boolean(env.match('build'))) {
-    return scriptsFunnel;
+    return componentTree;
   }
 
-  return mergeTrees([devBuild, server()]);
+  return mergeTrees([devBuild, server]);
 };

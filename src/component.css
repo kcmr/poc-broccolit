@@ -1,7 +1,7 @@
 :host {
   display: block;
-  font-family: sans-serif;
-  background-color: rgb(162, 204, 84);
+  color: orange;
+  transition: transform 0.2s linear;
 }
 
 :host([hidden]) {
@@ -10,7 +10,6 @@
 
 button {
   font: inherit;
-  background-color: pink;
-  color: blue;
-  border: none;
+  color: green;
+  padding: 10px;
 }

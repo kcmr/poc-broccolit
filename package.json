@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "broccoli serve",
-    "build": "broccoli build --environment=build"
+    "build": "broccoli build --environment=build --overwrite"
   },
   "keywords": [],
   "author": "",
@@ -22,13 +22,17 @@
     "@babel/plugin-syntax-import-meta": "^7.2.0",
     "@babel/preset-env": "^7.5.4",
     "broccoli": "^3.1.2",
-    "broccoli-bs": "^0.1.0",
+    "broccoli-autoprefixer": "^7.0.0",
     "broccoli-cli": "^1.0.0",
     "broccoli-funnel": "^2.0.2",
     "broccoli-merge-trees": "^3.0.2",
     "broccoli-persistent-filter": "^2.3.1",
+    "broccoli-plugin": "^2.1.0",
     "broccoli-rollup": "^4.1.1",
+    "browser-sync": "^2.26.7",
+    "bs-snippet-injector": "^2.0.1",
     "deep-extend": "^0.6.0",
+    "live-server": "^1.2.1",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.0.1",
     "rollup-plugin-node-resolve": "^5.2.0"
