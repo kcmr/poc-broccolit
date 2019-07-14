@@ -1,6 +1,6 @@
 import funnel from 'broccoli-funnel';
 import mergeTrees from 'broccoli-merge-trees';
-import BroccoliStyleImporter from './lib/broccoli-styles';
+import StyleExport from './lib/broccoli-styles';
 import Rollup from 'broccoli-rollup';
 import rollupConfig from './lib/rollup-config';
 import Server from './lib/broccoli-server';
@@ -18,7 +18,7 @@ const demo = funnel('.', {
 });
 
 const prefixedStyles = new Autoprefixer(styles);
-const styleScripts = new BroccoliStyleImporter(prefixedStyles);
+const styleScripts = new StyleExport(prefixedStyles);
 const componentTree = mergeTrees([styleScripts, scripts]);
 const bundle = new Rollup(componentTree, rollupConfig(main));
 const devBuild = mergeTrees([demo, bundle]);
