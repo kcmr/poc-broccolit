@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "broccoli serve",
-    "build": "broccoli build --environment=build --overwrite"
+    "prebuild": "rimraf dist",
+    "build": "broccoli build --environment=build"
   },
   "keywords": [],
   "author": "",
@@ -31,6 +32,7 @@
     "broccoli-rollup": "^4.1.1",
     "deep-extend": "^0.6.0",
     "live-server": "^1.2.1",
+    "rimraf": "^2.6.3",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.0.1",
     "rollup-plugin-node-resolve": "^5.2.0"
