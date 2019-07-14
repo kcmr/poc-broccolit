@@ -3,7 +3,7 @@ import mergeTrees from 'broccoli-merge-trees';
 import StyleExport from './lib/broccoli-styles';
 import Rollup from 'broccoli-rollup';
 import rollupConfig from './lib/rollup-config';
-import Server from './lib/broccoli-server';
+import LiveServer from 'broccoli-live-server';
 import Autoprefixer from 'broccoli-autoprefixer';
 import { main } from './package';
 
@@ -22,7 +22,7 @@ const styleScripts = new StyleExport(prefixedStyles);
 const componentTree = mergeTrees([styleScripts, scripts]);
 const bundle = new Rollup(componentTree, rollupConfig(main));
 const devBuild = mergeTrees([demo, bundle]);
-const server = new Server(devBuild);
+const server = new LiveServer(devBuild);
 
 export default ({ env }) => {
   if (Boolean(env.match('build'))) {
