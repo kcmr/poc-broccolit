@@ -12,7 +12,7 @@ class Component extends LitElement {
   constructor() {
     super();
 
-    this.greeting = 'Hello world';
+    this.greeting = 'Hello worlasfdsdfdasdfasdf';
     this.items = [
       {
         name: 'hola'
@@ -41,7 +41,7 @@ class Component extends LitElement {
       <button @click=${this._onButtonClick}>Add item</button>
       <ul>
         ${this.items.map(
-          item => html`
+          (item) => html`
             <li>${item.name}</li>
           `
         )}

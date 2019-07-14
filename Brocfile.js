@@ -4,36 +4,29 @@ import BroccoliStyleImporter from './lib/broccoli-styles';
 import Rollup from 'broccoli-rollup';
 import rollupConfig from './lib/rollup-config';
 import BrowserSync from 'broccoli-bs';
+import { main } from './package';
 
-const srcDir = 'src';
-const srcScripts = funnel(srcDir, {
-  include: ['**/*.js'],
+const styleScripts = new BroccoliStyleImporter('src');
+const scriptsFunnel = funnel(styleScripts, {
   exclude: ['**/*.css']
 });
-const scrStyles = funnel(srcDir, {
-  include: ['**/*.css']
-});
+const bundle = new Rollup(scriptsFunnel, rollupConfig(main));
 const demo = funnel('.', {
   files: ['index.html']
 });
+const devBuild = mergeTrees([demo, bundle]);
+const server = () =>
+  new BrowserSync(devBuild, {
+    bs: {
+      open: false,
+      notify: false
+    }
+  });
 
-const styleScripts = new BroccoliStyleImporter(scrStyles);
-const scripts = mergeTrees([styleScripts].concat(srcScripts));
-const bundle = new Rollup(
-  scripts,
-  rollupConfig({
-    input: 'component.js',
-    output: 'component.mjs'
-  })
-);
-
-const devBundle = mergeTrees([demo, bundle]);
-const devServer = new BrowserSync(devBundle, {
-  bs: {
-    open: false,
-    notify: false
+export default ({ env }) => {
+  if (Boolean(env.match('build'))) {
+    return scriptsFunnel;
   }
-});
 
-// module.exports = devBundle;
-export default mergeTrees([devBundle, devServer]);
+  return mergeTrees([devBuild, server()]);
+};

@@ -1,9 +1,16 @@
 :host {
   display: block;
   font-family: sans-serif;
-  background-color: orange;
+  background-color: rgb(162, 204, 84);
 }
 
 :host([hidden]) {
   display: none;
+}
+
+button {
+  font: inherit;
+  background-color: pink;
+  color: blue;
+  border: none;
 }
